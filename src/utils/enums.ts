@@ -1,4 +1,4 @@
 export enum Actions {
-  add = "CREATE",
+  add = "ADD",
   delete = "DELETE",
 }

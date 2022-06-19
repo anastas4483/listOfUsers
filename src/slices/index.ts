@@ -4,13 +4,11 @@ import { User } from "../utils/types"
 
 interface InitialStateProp {
   allUsers: User[]
-  newUser: User | null
   action: Actions | ""
 }
 
 const initialState: InitialStateProp = {
   allUsers: [],
-  newUser: null,
   action: "",
 }
 
@@ -22,12 +20,18 @@ export const userSlice = createSlice({
       state.allUsers = action.payload
     },
     setAction: (state, action) => {
-      state.action = action.payload.action
-      if (action.payload.action === Actions.add && action.payload.newUser)
-        state.newUser = action.payload.newUser
+      state.action = action.payload
+    },
+    addUser: (state, action) => {
+      state.allUsers.push(action.payload)
+    },
+    deleteUser: (state, action) => {
+      state.allUsers = state.allUsers.filter(
+        (user) => user.id !== action.payload
+      )
     },
   },
 })
 
-export const { setUsers, setAction } = userSlice.actions
+export const { setUsers, setAction, addUser, deleteUser } = userSlice.actions
 export default userSlice.reducer

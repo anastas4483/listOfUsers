@@ -1,10 +1,10 @@
 export interface User {
   id: number
   name: string
-  username: string
+  username?: string
   email: string
-  address: {}
+  address?: {}
   phone: string
-  website: string
-  company: {}
+  website?: string
+  company?: {}
 }
