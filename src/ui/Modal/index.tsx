@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addUser, setAction } from "../../slices"
-import { usersSelector } from "../../slices/selectors"
+import { allUsersSelector } from "../../slices/selectors"
 import { Button } from "../Button"
 import { ModalTitle, ModalWrapper } from "./Modal.styled"
 
 export const Modal = () => {
   const dispatch = useDispatch()
-  const newId = useSelector(usersSelector).length
+  const newId = useSelector(allUsersSelector).length
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("")

@@ -5,19 +5,31 @@ import { User } from "../utils/types"
 interface InitialStateProp {
   allUsers: User[]
   action: Actions | ""
+  filterUsers: User[]
 }
 
 const initialState: InitialStateProp = {
   allUsers: [],
   action: "",
+  filterUsers: [],
 }
 
 export const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setUsers: (state, action) => {
+    setAllUsers: (state, action) => {
       state.allUsers = action.payload
+    },
+    setFilterUsers: (state, action) => {
+      state.filterUsers = state.allUsers.filter((user) =>
+        user.name
+          .toLocaleLowerCase()
+          .includes(action.payload.toLocaleLowerCase())
+      )
+    },
+    updateFilterUserWithAllUsers: (state) => {
+      state.filterUsers = state.allUsers
     },
     setAction: (state, action) => {
       state.action = action.payload
@@ -33,5 +45,12 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setUsers, setAction, addUser, deleteUser } = userSlice.actions
+export const {
+  setAllUsers,
+  setAction,
+  addUser,
+  deleteUser,
+  setFilterUsers,
+  updateFilterUserWithAllUsers,
+} = userSlice.actions
 export default userSlice.reducer

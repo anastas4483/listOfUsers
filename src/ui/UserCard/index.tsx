@@ -22,8 +22,6 @@ const UserItem = ({ user }: UserItemProp) => {
   const { name, email, phone, id } = user
 
   const onDeleteUser = () => {
-    console.log(id)
-
     dispatch(deleteUser(id))
   }
   return (
